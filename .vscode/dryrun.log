@@ -1,0 +1,14 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory '/home/matthew/projects/guestbook'
+ 
+mkdir -p /home/matthew/projects/guestbook/bin
+ 
+GOBIN=/home/matthew/projects/guestbook/bin go install sigs.k8s.io/controller-tools/cmd/controller-gen@v0.8.0
+ 
+/home/matthew/projects/guestbook/bin/controller-gen object:headerFile="hack/boilerplate.go.txt" paths="./..."
+go fmt ./...
+ 
+go vet ./...
+go build -o bin/manager main.go
+make: Leaving directory '/home/matthew/projects/guestbook'
+ 
